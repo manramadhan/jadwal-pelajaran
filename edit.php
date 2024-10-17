@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         updateJadwal($_POST['id'], $_POST['waktu'], $_POST['mata_pelajaran']);
         header('Location: index.php');
-        exit;
+        exit();
     }
 }
 
@@ -18,14 +18,14 @@ $jadwal = getJadwalById($_GET['id']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Edit Jadwal</title>
+    <link rel="stylesheet" href="../jadwal-pelajaran/css/style.css">
 </head>
 <body>
     <div class="container">
         <h1>Edit Jadwal</h1>
         <form method="POST" action="">
-            <input type="hidden" name="id" value="<?php echo $jadwal['id']; ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($jadwal['id']); ?>">
             <div class="form-group">
                 <label for="waktu">Waktu</label>
                 <input type="text" id="waktu" name="waktu" placeholder="Masukkan waktu" value="<?php echo htmlspecialchars($jadwal['waktu']); ?>" required autocomplete="off">

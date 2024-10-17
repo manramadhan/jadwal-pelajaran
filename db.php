@@ -1,11 +1,12 @@
 <?php
+define('DB_PATH', __DIR__ . '/jadwal.db');
+
 function connectDB() {
     try {
-        $db_path = __DIR__ . '/jadwal.db';
-        $db = new SQLite3($db_path);
+        $db = new SQLite3(DB_PATH);
         
         // Jika tabel belum ada, buat tabel jadwal
-        $db->exec("CREATE TABLE IF NOT EXISTS jadwal (
+        $db->query ("CREATE TABLE IF NOT EXISTS jadwal (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             hari TEXT NOT NULL,
             waktu TEXT NOT NULL,
@@ -18,3 +19,4 @@ function connectDB() {
         exit;
     }
 }
+?>
